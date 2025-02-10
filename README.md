@@ -78,7 +78,7 @@ done
 
 ## Destroy Instruction
 
-EKS will provision automatically an ALB, and this resource is not managed through Terraform.
+EKS will provision automatically an ALB (using AWS Load Balancer Controller), and this resource is not managed through Terraform.
 
 Please execute the following commands to remove any left over infrastructure that was automatically created by EKS:
 
