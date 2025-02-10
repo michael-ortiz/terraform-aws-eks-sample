@@ -49,10 +49,6 @@ Terraform will automatically run these commands for your, but in case, below are
 # Update the kubeconfig (locally)
 aws eks update-kubeconfig --region ${var.aws_region} --name ${var.cluster_name}
 
-# Create the default namespace
-kubectl create namespace ${var.default_namespace}
-kubectl config set-context --current --namespace=${var.default_namespace}
-
 # Deploy the sample application
 kubectl apply -f ${path.module}/configs/eks-deployment.yaml
 kubectl apply -f ${path.module}/configs/eks-service.yaml
@@ -87,7 +83,6 @@ helm uninstall aws-load-balancer-controller -n kube-system
 kubectl delete -f ./configs/eks-deployment.yaml
 kubectl delete -f ./configs/eks-service.yaml
 kubectl delete -f ./configs/eks-ingress.yaml
-kubectl delete namespace eks-sample-app
 kubectl delete serviceaccount aws-load-balancer-controller -n kube-system
 ```
 

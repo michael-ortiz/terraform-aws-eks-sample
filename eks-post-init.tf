@@ -9,10 +9,6 @@ resource "null_resource" "eks_post_init" {
       # Update the kubeconfig
       aws eks update-kubeconfig --region ${var.aws_region} --name ${var.cluster_name}
 
-      # Create the default namespace
-      kubectl create namespace ${var.default_namespace}
-      kubectl config set-context --current --namespace=${var.default_namespace}
-
       # Deploy the sample application
       kubectl apply -f ${path.module}/configs/eks-deployment.yaml
       kubectl apply -f ${path.module}/configs/eks-service.yaml

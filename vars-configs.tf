@@ -37,12 +37,6 @@ variable "cluster_name" {
   default     = "my-eks-cluster" // If you change this, make sure to also update the configs .yaml references
 }
 
-variable "default_namespace" {
-  description = "The default namespace to deploy the sample application into"
-  type        = string
-  default     = "eks-sample-app"
-}
-
 variable "default_eks_access_policy_arn" {
   # https://docs.aws.amazon.com/eks/latest/userguide/access-policies.html
   description = "The ARN of the policy which will be assigned to the root account for access to the EKS Cluster"
