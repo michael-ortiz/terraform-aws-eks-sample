@@ -1,16 +1,13 @@
 # EKS on Terraform
 
-A simple EKS Cluster that will run 2 application pods, and service traffic using an Application Load Balancer. This will use AWS
+A simple AWS EKS (Kuberentes) Cluster that runs a service with 2 pods (containers) behind an Application Load Balancer. All on Terraform.
 
 ## Pre-requisites
 
-Before you run this, make sure you have the following packages installed:
+Before depoyment, make sure you have the following packages installed:
 
 ```sh
-brew install terraform
-brew install awscli
-brew install kubernetes-cli
-brew install helm
+brew install terraform awscli kubernetes-cli helm
 ```
 
 Ensure you have configured your AWS Credentials on your local computer using `aws configure` command and have enough access to deploy into AWS.
