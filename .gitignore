@@ -2,3 +2,4 @@
 *local.terraform
 .DS_Store
 terraform.tfstate*
+*local.tf

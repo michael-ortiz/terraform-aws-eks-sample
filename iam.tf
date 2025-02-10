@@ -369,21 +369,6 @@ resource "aws_iam_role_policy_attachment" "aws_load_balancer_controller_policy_a
   depends_on = [ aws_eks_cluster.main ]
 }
 
-resource "kubernetes_service_account" "aws_load_balancer_controller" {
-  metadata {
-    name      = "aws-load-balancer-controller"
-    namespace = "kube-system"
-    annotations = {
-      "eks.amazonaws.com/role-arn" = aws_iam_role.aws_load_balancer_controller_role.arn
-    }
-  }
-
-  depends_on = [
-    aws_eks_cluster.main, 
-    null_resource.kube_config // Ensure the kubeconfig is available before creating the ServiceAccount
-  ]
-}
-
 resource "aws_iam_openid_connect_provider" "eks" {
   client_id_list = ["sts.amazonaws.com"]
   url            = aws_eks_cluster.main.identity[0].oidc[0].issuer
