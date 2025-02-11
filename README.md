@@ -50,8 +50,8 @@ Terraform will automatically run these commands for your, but in case, below are
 aws eks update-kubeconfig --region ${var.aws_region} --name ${var.cluster_name}
 
 # Deploy the sample application
-kubectl apply -f ${path.module}/configs/eks-deployment.yaml
-kubectl apply -f ${path.module}/configs/eks-service.yaml
+kubectl apply -f ${path.module}/manifests/eks-deployment.yaml
+kubectl apply -f ${path.module}/manifests/eks-service.yaml
 
 # Create Service Account for AWS Load Balancer Controller
 kubectl create serviceaccount aws-load-balancer-controller -n kube-system
@@ -68,7 +68,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 # Deploy the Ingress
 sleep 30
 for i in {1..10}; do
-  kubectl apply -f ${path.module}/configs/eks-ingress.yaml && break || sleep 30
+  kubectl apply -f ${path.module}/manifests/eks-ingress.yaml && break || sleep 30
 done
 ```
 
@@ -80,9 +80,9 @@ Please execute the following commands to remove any left over infrastructure tha
 
 ```sh
 helm uninstall aws-load-balancer-controller -n kube-system
-kubectl delete -f ./configs/eks-deployment.yaml
-kubectl delete -f ./configs/eks-service.yaml
-kubectl delete -f ./configs/eks-ingress.yaml
+kubectl delete -f ./manifests/eks-deployment.yaml
+kubectl delete -f ./manifests/eks-service.yaml
+kubectl delete -f ./manifests/eks-ingress.yaml
 kubectl delete serviceaccount aws-load-balancer-controller -n kube-system
 ```
 

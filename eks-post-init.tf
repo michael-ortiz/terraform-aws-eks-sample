@@ -10,8 +10,8 @@ resource "null_resource" "eks_post_init" {
       aws eks update-kubeconfig --region ${var.aws_region} --name ${var.cluster_name}
 
       # Deploy the sample application
-      kubectl apply -f ${path.module}/configs/eks-deployment.yaml
-      kubectl apply -f ${path.module}/configs/eks-service.yaml
+      kubectl apply -f ${path.module}/manifests/eks-deployment.yaml
+      kubectl apply -f ${path.module}/manifests/eks-service.yaml
       
       # Create Service Account for AWS Load Balancer Controller
       kubectl create serviceaccount aws-load-balancer-controller -n kube-system
@@ -28,7 +28,7 @@ resource "null_resource" "eks_post_init" {
       # Deploy the Ingress
       sleep 30
       for i in {1..10}; do
-        kubectl apply -f ${path.module}/configs/eks-ingress.yaml && break || sleep 30
+        kubectl apply -f ${path.module}/manifests/eks-ingress.yaml && break || sleep 30
       done
     EOT
   }
