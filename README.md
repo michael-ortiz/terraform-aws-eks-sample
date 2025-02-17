@@ -79,11 +79,7 @@ EKS will provision automatically an ALB (using AWS Load Balancer Controller), an
 Please execute the following commands to remove any left over infrastructure that was automatically created by EKS:
 
 ```sh
-helm uninstall aws-load-balancer-controller -n kube-system
-kubectl delete -f ./manifests/eks-deployment.yaml
-kubectl delete -f ./manifests/eks-service.yaml
 kubectl delete -f ./manifests/eks-ingress.yaml
-kubectl delete serviceaccount aws-load-balancer-controller -n kube-system
 ```
 
 Then finalize with,
